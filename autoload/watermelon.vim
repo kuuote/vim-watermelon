@@ -51,5 +51,7 @@ function! watermelon#open() abort
   if g:watermelon_chdir && isdirectory("/proc")
     autocmd CursorMoved,CursorMovedI <buffer> call watermelon#chdir()
   endif
+  execute printf("autocmd BufDelete <buffer=%d> stopinsert", bufnr)
+  execute printf("autocmd BufDelete <buffer=%d> bdelete %d", bufnr, bufnr("%"))
   startinsert
 endfunction
