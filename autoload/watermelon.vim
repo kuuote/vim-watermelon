@@ -7,7 +7,7 @@ function! watermelon#chdir() abort
   else
     return
   endif
-  exe "lcd" resolve(printf("/proc/%d/cwd", pid))
+  exe "silent! lcd" resolve(printf("/proc/%d/cwd", pid))
 endfunction
 
 function! watermelon#send(action) abort
