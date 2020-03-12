@@ -40,9 +40,9 @@ function! watermelon#open() abort
   let b:watermelon_winid = winid
   execute "setfiletype" executable("zsh") ? "zsh" : "sh"
   execute "resize" &cmdwinheight
-  nnoremap <buffer> <silent> <CR> :<C-u>call watermelon#send("\n")<CR>
-  inoremap <buffer> <silent> <C-j> <C-o>:call watermelon#send("\n")<CR>
-  inoremap <buffer> <silent> <CR> <C-o>:call watermelon#send("\n")<CR><End><CR>
+  nnoremap <buffer> <silent> <CR> :<C-u>call watermelon#send("\r")<CR>
+  inoremap <buffer> <silent> <C-j> <C-o>:call watermelon#send("\r")<CR>
+  inoremap <buffer> <silent> <CR> <C-o>:call watermelon#send("\r")<CR><End><CR>
   if g:watermelon_shellcomplete
     inoremap <buffer> <silent> <Tab> <Esc>:call watermelon#send("\t")<CR>:call watermelon#goterm()<CR>
   else
