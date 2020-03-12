@@ -57,5 +57,4 @@ function! watermelon#open() abort
     r .watermelon
     0d_
   endif
-  startinsert
 endfunction
