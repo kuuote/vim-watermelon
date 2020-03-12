@@ -53,5 +53,9 @@ function! watermelon#open() abort
   endif
   execute printf("autocmd BufDelete <buffer=%d> stopinsert", bufnr)
   execute printf("autocmd BufDelete <buffer=%d> bdelete %d", bufnr, bufnr("%"))
+  if filereadable(".watermelon")
+    r .watermelon
+    0d_
+  endif
   startinsert
 endfunction
