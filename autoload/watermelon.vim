@@ -39,7 +39,10 @@ function! watermelon#open() abort
   let b:watermelon_bufnr = bufnr
   let b:watermelon_winid = winid
   execute "setfiletype" executable("zsh") ? "zsh" : "sh"
-  execute "resize" &cmdwinheight
+
+  resize
+  execute "resize" winheight(0) / 3
+
   nnoremap <buffer> <silent> <CR> :<C-u>call watermelon#send("\r")<CR>
   inoremap <buffer> <silent> <C-j> <C-o>:call watermelon#send("\r")<CR>
   inoremap <buffer> <silent> <CR> <C-o>:call watermelon#send("\r")<CR><End><CR>
@@ -53,6 +56,7 @@ function! watermelon#open() abort
   endif
   execute printf("autocmd BufDelete <buffer=%d> stopinsert", bufnr)
   execute printf("autocmd BufDelete <buffer=%d> bdelete %d", bufnr, bufnr("%"))
+
   if filereadable(".watermelon")
     r .watermelon
     0d_
