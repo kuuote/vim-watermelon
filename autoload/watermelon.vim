@@ -24,6 +24,18 @@ function! watermelon#goterm() abort
   startinsert
 endfunction
 
+function! watermelon#readrc(...) abort
+  let f = a:0 != 0 ? a:1 : ".watermelon"
+  %d_
+  r `=f`
+  0d_
+endfunction
+
+function! watermelon#writerc(...) abort
+  let f = a:0 != 0 ? a:1 : ".watermelon"
+  w `=f`
+endfunction
+
 function! watermelon#open() abort
   if has("nvim")
     tabnew
@@ -58,7 +70,8 @@ function! watermelon#open() abort
   execute printf("autocmd BufDelete <buffer=%d> bdelete %d", bufnr, bufnr("%"))
 
   if filereadable(".watermelon")
-    r .watermelon
-    0d_
+    call watermelon#readrc()
   endif
+
+  doautocmd User Watermelon
 endfunction
